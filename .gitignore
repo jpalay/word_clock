@@ -1,0 +1,10 @@
+*.hex
+*.o
+*.out
+
+*.sw[op]
+*.png
+*.pdf
+
+.DS_Store
+
