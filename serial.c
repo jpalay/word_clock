@@ -15,7 +15,7 @@ int main()
     setBit(LED_DDR, LED);
     UART_init();
 
-    char buff[255];
+    char buff[254];
 
     while(1) {
         int n_read = UART_gets(buff, 255);

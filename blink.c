@@ -2,8 +2,6 @@
 #include <util/delay.h>
 
  #include "./lib/ws2812/strand.h"
-/* #include "./lib/ws2812_config.h" */
-/* #include "./lib/light_ws2812.h" */
 
 #define LED              PB0
 #define LED_PORT         PORTB
@@ -19,10 +17,6 @@ int main() {
 
     uint16_t n_leds = 2;
     struct strand *s = init_strand(n_leds);
-
-    for (int i = 0; i < n_leds; i++) {
-        set_led(s, i);
-    }
 
     uint8_t pos = 0;
     while (1) {

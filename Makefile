@@ -6,7 +6,7 @@ LIB = lib/light_ws2812.c lib/light_ws2812.h lib/ws2812_config.h
 CFLAGS = -g2 -I. -Os -Wall -mmcu=$(DEVICE) -DF_CPU=$(F_CPU)
 CFLAGS += -DUART_RX0_BUFFER_SIZE=256 -DUART_TX0_BUFFER_SIZE=256
 
-MAIN = blink_basic
+MAIN = blink
 
 upload: build
 	avrdude -p m328p -c usbtiny -U flash:w:$(MAIN).hex
