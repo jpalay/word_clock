@@ -31,6 +31,11 @@ void set_led(struct strand *s, uint16_t led) {
     set_led_color(s, led, c);
 }
 
+void unset_led(struct strand *s, uint16_t led) {
+    struct cRGB c = {0, 0, 0};
+    set_led_color(s, led, c);
+}
+
 void display(struct strand *s) {
     ws2812_setleds(s->colors, s->len);
 }
@@ -44,7 +49,7 @@ void display_rainbow(struct strand *s, uint8_t rainbow_pos, uint8_t step_size) {
         if (c.r + c.g + c.b > 0) {
             struct cRGB color;
             wheel(rainbow_pos, &color);
-            rainbow_pos = (rainbow_pos + 20) % 128;
+            rainbow_pos = (rainbow_pos + step_size) % 128;
             new_colors[i] = color;
         }
 

@@ -19,19 +19,27 @@ int main() {
     struct strand *s = init_strand(n_leds);
 
     uint8_t pos = 0;
-    while (1) {
-        for (int i = 0; i < n_leds; i++) {
-            if (i == pos)
-                set_led(s, i);
-            else
-                unset_led(s, i);
-        }
 
-        pos = (pos + 1) % n_leds;
-        display(s);
-        _delay_ms(50);
+    for (int i = 0; i < n_leds; i++) {
+        set_led(s, i);
+    }
+
+    while (1) {
+        display_rainbow(s, pos, 2);
+        pos = (pos + 1) % 128;
+        _delay_ms(10);
     }
 
     destroy_strand(s);
     return 0;
 }
+
+/* int main() { */
+/*     setBit(LED_DDR, LED); */
+/*     uint16_t n_leds = 2; */
+/*     struct strand *s = init_strand(n_leds); */
+/*  */
+/*     set_led(s, 1); */
+/*  */
+/*     display_rainbow(s, 0, 0); */
+/* } */
