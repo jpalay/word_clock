@@ -36,6 +36,18 @@ void unset_led(struct strand *s, uint16_t led) {
     set_led_color(s, led, c);
 }
 
+void set_multiple_leds(struct strand *s, uint16_t n) {
+    for (int i = 0; i < s->len; i++) {
+        set_led(s, i);
+    }
+}
+
+void clear(struct strand *s) {
+    for (int i = 0; i < s->len; i++) {
+        unset_led(s, i);
+    }
+}
+
 void display(struct strand *s) {
     ws2812_setleds(s->colors, s->len);
 }
@@ -52,7 +64,6 @@ void display_rainbow(struct strand *s, uint8_t rainbow_pos, uint8_t step_size) {
             rainbow_pos = (rainbow_pos + step_size) % 128;
             new_colors[i] = color;
         }
-
         else {
             new_colors[i] = off;
         }
@@ -63,7 +74,7 @@ void display_rainbow(struct strand *s, uint8_t rainbow_pos, uint8_t step_size) {
 
 void wheel(uint8_t pos, struct cRGB* color) {
     if (pos > 126) {
-        pos = pos % 128;
+        pos = pos % 126;
     } 
 
     uint8_t relative_pos;

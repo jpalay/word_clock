@@ -1,7 +1,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
- #include "./lib/ws2812/strand.h"
+#include "./lib/ws2812/strand.h"
 
 #define LED              PB0
 #define LED_PORT         PORTB
@@ -15,10 +15,11 @@ int main() {
     // Set LED for output
     setBit(LED_DDR, LED);
 
-    uint16_t n_leds = 65;
+    uint16_t n_leds = 130;
     struct strand *s = init_strand(n_leds);
 
-    uint8_t pos = 0;
+    uint16_t pos = 0;
+
     while (1) {
         for (int i = 0; i < n_leds; i++) {
             if (i == pos)
